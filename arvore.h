@@ -22,8 +22,8 @@ struct st_arvore{
 typedef struct st_arvore arvore;
 
 /*Na criação da árvore retorna um ponteiro nulo*/
-arvore* criaArvore(){
-    return NULL;
+void criaArvore(arvore** t){
+    *t = NULL;
 }
 
 /*Verifica se a árvore está vazia retornando nulo*/
@@ -79,4 +79,103 @@ void exibirPosOrdem(arvore *pRaiz){//Pós-ordem é o que eu acho mais complicado, 
         exibirPosOrdem(pRaiz->direita);
         printf("\n%i", pRaiz->valor);
     }
+}
+
+char menu_principal()
+{
+    printf("  1 - Criar %crvore\n",160);
+    printf("  2 - Listar %crvore\n",160);
+    printf("  3 - Pesquisar na %crvore\n",160);
+    printf("  4 - Inserir na %crvore\n",160);
+    printf("  5 - Esvaziar %crvore\n",160);
+    printf("  0 - Sair do aplicativo\n\n");
+    printf("  ESCOLHA UM OP%c%cO: ",128,199);
+    return getche();
+}
+
+arvore* MaiorDireita(arvore** no) //Essas duas funções, *MaiorDireita e *MenorEsquerda são duas funções auxiliares. Vão ser usadas na hora de remover um Nó que tenha filhos a direita e a esquerda
+{
+//essa função vai ser usada pra, como o próprio nome já diz, buscar o Maior nó a direita
+//Recebe um arvore** no que será o nó a ser removido, a partir dai ele busca o maior à direita
+    if((*no)->direita != NULL)//caso seja diferente de null, ou seja, existe algum nó à direita, ele chama recursivamente o próximo nó à direita
+        return MaiorDireita(&(*no)->direita);
+    else //caso contrário, esse é o maior nó a direita.
+    {
+        arvore *aux = *no;//faz um backup do nó, pois ele irá excluir esse nó, e irá adicioná-lo em outro lugar
+        if((*no)->esquerda != NULL) // se nao houver essa verificacao, esse nó vai perder todos os seus filhos da esquerda!
+            *no = (*no)->esquerda;
+        else
+            *no = NULL;
+        return aux;
+    }
+}
+
+arvore* MenorEsquerda(arvore** no) //Essa função tem a mesma característica da anterior. Dependendo da sua abordagem, você pode usar uma ou outra. Se a sua abordagem é de pegar o Menor à esquerda, use essa função, caso contrário, utilize a anterior.
+{
+    if((*no)->esquerda != NULL)
+        return MenorEsquerda(&(*no)->esquerda);
+    else
+    {
+        arvore *aux = *no;
+        if((*no)->direita != NULL) // se nao houver essa verificacao, esse nó vai perder todos os seus filhos da direita!
+            *no = (*no)->direita;
+        else
+            *no = NULL;
+        return aux;
+    }
+}
+
+void remover(arvore** t, int valor) //Mais uma vez aquela confusão do **pRaiz, mas já está ciente do problema. A função recebe o nó raiz, e um número a ser removido. Irá fazer uma busca de onde está esse número e depois executa a lógica de remoção.
+{
+    if(*t == NULL)    // esta verificacao serve para caso o numero nao exista na arvore.
+    {
+        printf("Numero nao existe na arvore!");
+        getch();
+        return;
+    }
+
+    if(valor < (*t)->valor)//verifica se o número é menor que o número do Nó atual, na busca.
+        remover(&(*t)->esquerda, valor);//chamada recursiva para caso seja menor
+    else//caso contrário, ele será o número ou será maior
+        if(valor > (*t)->valor)//verifica se o número é maior que o número do Nó atual, na busca.
+            remover(&(*t)->direita, valor);//chamada recursiva para caso seja maior
+        else     // se nao eh menor nem maior, logo, eh o numero que estou procurando! :)
+        {
+            arvore *aux = *t;     // faz um backup do Nó a ser removido
+            if (((*t)->esquerda == NULL) && ((*t)->direita == NULL)) // verifica se não tem filho nem a direita, nem a esquerda, ou seja, não tem filhos.
+            {
+                free(aux);//Nesse Caso, é bem simples, é só desalocar, liberar esse nó da memória
+                (*t) = NULL;
+            }
+            else      // so tem o filho da direita
+            {
+                if ((*t)->esquerda == NULL) //Verifica se não tem filho a esquerda, caracterizando como tendo filhos somente a direita.
+                {
+                    (*t) = (*t)->direita;//o Nó atual, recebe o seu filho a direta, fazendo com que ele desapareça e o seu próximo filho substitua o seu lugar
+                    aux->direita = NULL;//o backup se faz necessário para isso, para você cortar essa ligação, caso contrário, teria um nó em memória que teriam os antigos filhos
+                    free(aux);
+                    aux = NULL;// e também para poder liberá-lo da memória depois
+                }
+                else             //so tem filho da esquerda
+                {
+                    if ((*t)->direita == NULL) //MESMO CASO ANTERIOR, só que nesse caso, só existem filhos a esquerda.
+                    {
+                        (*t) = (*t)->esquerda;
+                        aux->esquerda = NULL;
+                        free(aux);
+                        aux = NULL;
+                    }
+                    else //Quando existe filhos a direita e a esquerda. Escolhi fazer o maior filho direito da subarvore esquerda.
+                    {
+                        aux = MaiorDireita(&(*t)->esquerda); //Faz um backup do Maior a direita, pois ele usará o maior a direita no local do Nó a ser removido. Se vc quiser usar o Menor da esquerda, so o que mudaria seria isso: aux = MenorEsquerda(&(*t)->direita);
+                        aux->esquerda = (*t)->esquerda;          //o Nó(Maior a Direita) irá receber os filhos a esquerda do Nó que será removido
+                        aux->direita = (*t)->direita;//o Nó(Maior a Direita) irá receber os filhos a direita do Nó que será removido
+                        (*t)->esquerda = (*t)->direita = NULL;//O Nó que será removido, perde seus filhos, ou seja, recebe NULL
+                        free((*t));
+                        *t = aux;
+                        aux = NULL;   //Enfim, libera-se da memória o nó a ser removido
+                    }
+                }
+            }
+        }
 }

@@ -1,21 +1,6 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "arvore.h"
-
-
-char menu_principal()
-{
-    printf("  1 - Criar %crvore\n",160);
-    printf("  2 - Listar %crvore\n",160);
-    printf("  3 - Pesquisar na %crvore\n",160);
-    printf("  4 - Inserir na %crvore\n",160);
-    printf("  5 - Esvaziar %crvore\n",160);
-    printf("  0 - Sair do aplicativo\n\n");
-    printf("  ESCOLHA UM OP%c%cO: ",128,199);
-    return getche();
-}
-
 
 int main(){
     char op;
@@ -39,7 +24,7 @@ int main(){
 
             case '1':
 
-            t = criaArvore();
+            criaArvore(&t);
 
             case '2':
                 exibirEmOrdem(t);
@@ -71,6 +56,7 @@ int main(){
                 break;
 
             case '5':
+
                 free(t);
                 break;
 
@@ -84,3 +70,20 @@ int main(){
 
     return 0;
 }
+
+
+// FUNÇÃO PRA REMOVER UM NÚMERO DA ÁRVORE
+
+/*printf("  Digite um numero: ");
+scanf("%i",&num);
+fflush(stdin);
+
+
+remover(&t, num);
+break;*/
+
+// REMOVER MENOR NÓ DA ESQUERDA
+/*MenorEsquerda(&t);*/
+
+// REMOVER MAIOR NÓ DA DIREITA
+/*MaiorDireita(&t);*/
