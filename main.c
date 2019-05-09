@@ -1,34 +1,83 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "arvore.h"
 
+
+char menu_principal()
+{
+    printf("  1 - Criar %crvore\n",160);
+    printf("  2 - Listar %crvore\n",160);
+    printf("  3 - Pesquisar na %crvore\n",160);
+    printf("  4 - Inserir na %crvore\n",160);
+    printf("  5 - Esvaziar %crvore\n",160);
+    printf("  0 - Sair do aplicativo\n\n");
+    printf("  ESCOLHA UM OP%c%cO: ",128,199);
+    return getche();
+}
+
+
 int main(){
+    char op;
+    int num;
+    arvore* t;
 
-    arvore* t = criaArvore();
+    while(1){
+        printf("\n********************************\n");
+        printf("*        %cRVORE BIN%cRIA        *\n",181,181);
+        printf("********************************\n");
 
-    insereDadoArvore(&t, 12);
-    insereDadoArvore(&t, 15);
-    insereDadoArvore(&t, 10);
-    insereDadoArvore(&t, 13);
+    op = menu_principal();
+    printf("\n\n");
 
-    mostraArvore(t);
+        if(op == '0') {
+            break;
+        }
 
-    if(arvoreEstaVazia(t)){
-        printf("\n\nArvore vazia!!\n");
-    }else{
-        printf("\n\nArvore nao vazia!!\n");
-    }
+        switch(op)
+        {
 
-    if(estaNaArvore(t, 15)){
-        printf("\nO elemento 15 pertence a arvore!\n");
-    }else{
-        printf("\nO elemento 15 nao pertence a arvore!\n");
-    }
+            case '1':
 
-    if(estaNaArvore(t, 22)){
-        printf("\nO elemento 22 pertence a arvore!\n");
-    }else{
-        printf("\nO elemento 22 nao pertence a arvore!\n");
+            t = criaArvore();
+
+            case '2':
+                exibirEmOrdem(t);
+                printf("\n");
+                exibirPosOrdem(t);
+                printf("\n");
+                exibirPreOrdem(t);
+                printf("\n");
+                break;
+
+            case '3':
+                printf("  Digite um numero: ");
+                scanf("%i",&num);
+                fflush(stdin);
+
+                if(estaNaArvore(t, num)){
+                    printf("\n  O elemento %i pertence a arvore!\n",num);
+                }else{
+                    printf("\n  O elemento %i nao pertence a arvore!\n",num);
+                }
+                break;
+
+            case '4':
+                printf("  Digite um numero: ");
+                scanf("%i",&num);
+                fflush(stdin);
+
+                insereDadoArvore(&t, num);
+                break;
+
+            case '5':
+                free(t);
+                break;
+
+            default:
+                printf("\n  Opcao Invalida\n\n");
+
+        }
     }
 
     free(t);
