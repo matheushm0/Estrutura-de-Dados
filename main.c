@@ -3,7 +3,7 @@
 #include "arvore.h"
 
 int main(){
-    char op;
+    char op,op2;
     int num;
     arvore* t;
 
@@ -12,8 +12,8 @@ int main(){
         printf("*        %cRVORE BIN%cRIA        *\n",181,181);
         printf("********************************\n");
 
-    op = menu_principal();
-    printf("\n\n");
+    	op = menu_principal();
+    	printf("\n\n");
 
         if(op == '0') {
             break;
@@ -23,17 +23,45 @@ int main(){
         {
 
             case '1':
-
-            criaArvore(&t);
+            t = criaArvore();
+            //criaArvore(&t);
+            break;
 
             case '2':
-                exibirEmOrdem(t);
-                printf("\n");
-                exibirPosOrdem(t);
-                printf("\n");
-                exibirPreOrdem(t);
-                printf("\n");
-                break;
+			    while(1){
+			        printf("\n********************************\n");
+			        printf("*        %cRVORE BIN%cRIA        *\n",181,181);
+			        printf("********************************\n");
+
+			    	op2 = sub_menu();
+			    	printf("\n\n");
+
+			        if(op2 == '0') {
+			        	system("cls");
+			            break;
+			        }
+
+			        switch(op2){
+						case '1':
+							system("cls");
+							printf("%cRVORE EM ORDEM:\n",181);
+							exibirEmOrdem(t);
+							printf("\n");
+							break;
+
+						case '2':
+							exibirPreOrdem(t);
+							break;
+
+						case '3':
+							exibirPosOrdem(t);
+							break;
+
+						default:
+                			printf("\n  Opcao Invalida\n\n");
+					}
+				}
+				break;
 
             case '3':
                 printf("  Digite um numero: ");
@@ -57,7 +85,34 @@ int main(){
 
             case '5':
 
-                free(t);
+            	printf("  Digite um numero: ");
+				scanf("%i",&num);
+				fflush(stdin);
+
+
+				remover(&t, num);
+				break;
+
+			case '6':
+
+                apagaArvore(t);
+                printf("\n %crvore deletada ", 181);
+                break;
+
+            case '7':
+
+                printf("Quantidade de N%cs: %d\n",162,contarNos(&t));
+                break;
+
+            case '8':
+                //Pelo oq eu entendi, quantidade de folhas é a quantidade de elementos na arvóre q apontam pra dois outros elementos
+                //digamos que fechando um conjunto de um número apontando pra outros dois
+                printf("Quandtidade de folhas: %d\n", contarFolhas(&t));
+                break;
+
+            case '9':
+
+                printf("Altura: %d\n", altura(&t));
                 break;
 
             default:
@@ -87,3 +142,12 @@ break;*/
 
 // REMOVER MAIOR NÓ DA DIREITA
 /*MaiorDireita(&t);*/
+
+//FUNÇÕES PARA MOSTRAR ALTURA DA ÁRVORE, QNTD DE NÓS E FOLHAS
+/*
+printf("Altura: %d\n", altura(&t));
+//Pelo oq eu entendi, quantidade de folhas é a quantidade de elementos na arvóre q apontam pra dois outros elementos
+//digamos que fechando um conjunto de um número apontando pra outros dois
+printf("Quandtidade de folhas: %d\n", contarFolhas(&t));
+printf("Quantidade de N%cs: %d\n",162,contarNos(&t));
+*/

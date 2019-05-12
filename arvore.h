@@ -7,7 +7,7 @@
  * com dois apontamentos para duas estruturas diferentes,
  * denominadas sub-árove esquerda e sub-árvore direita.
  *
- * existe uma regra para adifree(t);cionar valores na árvore,
+ * existe uma regra para adicionar valores na árvore,
  * se o valor novo for menor do que já existe na árvore é
  * criado um apontamento a esquerda caso contrário é criado
  * a direita.
@@ -22,9 +22,14 @@ struct st_arvore{
 typedef struct st_arvore arvore;
 
 /*Na criação da árvore retorna um ponteiro nulo*/
-void criaArvore(arvore** t){
-    *t = NULL;
+
+arvore* criaArvore(){
+    return NULL;
 }
+
+//void criaArvore(arvore** t){
+//    *t = NULL;
+//}
 
 /*Verifica se a árvore está vazia retornando nulo*/
 int arvoreEstaVazia(arvore* t){
@@ -87,8 +92,22 @@ char menu_principal()
     printf("  2 - Listar %crvore\n",160);
     printf("  3 - Pesquisar na %crvore\n",160);
     printf("  4 - Inserir na %crvore\n",160);
-    printf("  5 - Esvaziar %crvore\n",160);
+    printf("  5 - Excluir item da %crvore\n",160);
+    printf("  6 - Esvaziar %crvore\n",160);
+    printf("  7 - Contar N%cs\n", 162);
+    printf("  8 - Contar folhas\n");
+    printf("  9 - Altura da %crvore\n", 160);
     printf("  0 - Sair do aplicativo\n\n");
+    printf("  ESCOLHA UM OP%c%cO: ",128,199);
+    return getche();
+}
+
+char sub_menu()
+{
+    printf("  1 - Listar em ordem\n",160);
+    printf("  2 - Listar em pre ordem\n",160);
+    printf("  3 - Listar em pos ordem\n",160);
+    printf("  0 - Voltar ao menu\n\n");
     printf("  ESCOLHA UM OP%c%cO: ",128,199);
     return getche();
 }
@@ -125,8 +144,8 @@ arvore* MenorEsquerda(arvore** no) //Essa função tem a mesma característica da a
     }
 }
 
-void remover(arvore** t, int valor) //Mais uma vez aquela confusão do **pRaiz, mas já está ciente do problema. A função recebe o nó raiz, e um número a ser removido. Irá fazer uma busca de onde está esse número e depois executa a lógica de remoção.
-{
+void remover(arvore** t, int valor){ //Mais uma vez aquela confusão do **pRaiz, mas já está ciente do problema. A função recebe o nó raiz, e um número a ser removido. Irá fazer uma busca de onde está esse número e depois executa a lógica de remoção.
+
     if(*t == NULL)    // esta verificacao serve para caso o numero nao exista na arvore.
     {
         printf("Numero nao existe na arvore!");
@@ -179,3 +198,46 @@ void remover(arvore** t, int valor) //Mais uma vez aquela confusão do **pRaiz, m
             }
         }
 }
+
+int contarNos(arvore **t){
+    if((*t) == NULL)
+        return 0;
+    else
+        return 1 + contarNos(&(*t)->esquerda) + contarNos(&(*t)->direita);
+}
+
+int contarFolhas(arvore **t){
+    if((*t) == NULL)
+        return 0;
+    if((*t)->esquerda == NULL && (*t)->direita == NULL)
+        return 1;
+    return contarFolhas(&(*t)->esquerda) + contarFolhas(&(*t)->direita);
+}
+
+int maior(int a, int b){
+    if(a > b)
+        return a;
+    else
+        return b;
+}
+
+int altura(arvore **t){
+    if(((*t) == NULL) || ((*t)->esquerda == NULL && (*t)->direita == NULL))
+        return 0;
+    else
+        return 1 + maior(altura(&(*t)->esquerda), altura(&(*t)->direita));
+}
+
+void apagaArvore (struct st_arvore *t){
+    if (t == NULL)
+        return;
+
+    /* primeiro deleta as duas sub-arvores */
+    apagaArvore(t->esquerda);
+    apagaArvore(t->direita);
+
+    /* depois deleta o nó */
+    printf("\n Excluindo o n%c: %d", 162, t->valor);
+    free(t);
+}
+
