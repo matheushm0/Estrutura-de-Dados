@@ -206,6 +206,7 @@ int contarNos(arvore **t){
         return 1 + contarNos(&(*t)->esquerda) + contarNos(&(*t)->direita);
 }
 
+/* Folha é um nó que não tem filho algum */
 int contarFolhas(arvore **t){
     if((*t) == NULL)
         return 0;
@@ -214,18 +215,21 @@ int contarFolhas(arvore **t){
     return contarFolhas(&(*t)->esquerda) + contarFolhas(&(*t)->direita);
 }
 
-int maior(int a, int b){
-    if(a > b)
-        return a;
-    else
-        return b;
-}
-
-int altura(arvore **t){
-    if(((*t) == NULL) || ((*t)->esquerda == NULL && (*t)->direita == NULL))
+int altura(arvore* t)
+{
+    if (t == NULL)
         return 0;
     else
-        return 1 + maior(altura(&(*t)->esquerda), altura(&(*t)->direita));
+    {
+        /* Recebe altura de cada sub-arvore */
+        int eAltura = altura(t->esquerda);
+        int dAltura = altura(t->direita);
+
+        /* Usa a altura maior pra dizer o tamanho da árvore */
+        if (eAltura > dAltura)
+            return(eAltura + 1);
+        else return(dAltura + 1);
+    }
 }
 
 void apagaArvore (struct st_arvore *t){

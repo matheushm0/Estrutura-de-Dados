@@ -89,7 +89,6 @@ int main(){
 				scanf("%i",&num);
 				fflush(stdin);
 
-
 				remover(&t, num);
 				break;
 
@@ -97,6 +96,7 @@ int main(){
 
                 apagaArvore(t);
                 printf("\n %crvore deletada ", 181);
+                t = criaArvore();
                 break;
 
             case '7':
@@ -112,7 +112,7 @@ int main(){
 
             case '9':
 
-                printf("Altura: %d\n", altura(&t));
+                printf("Altura: %d\n", altura(t));
                 break;
 
             default:
