@@ -21,13 +21,14 @@ int main(){
 
         switch(op)
         {
-
+            /*Criar Árvore*/
             case '1':
             	system("cls");
             	printf("\n  %crvore criada com sucesso!\n",181);
             	t = criaArvore();
             	break;
 
+            /*Inserir na Árvore*/
             case '2':
                 printf("  Digite um n%cmero: ",163);
                 scanf("%i",&num);
@@ -38,6 +39,7 @@ int main(){
                 insereDadoArvore(&t, num);
                 break;
 
+            /*Listar Árvore*/
             case '3':
 
 			    while(1){
@@ -83,6 +85,7 @@ int main(){
 				}
 				break;
 
+            /*Excluir itens da árvore*/
             case '4':
 
 			    while(1){
@@ -129,6 +132,7 @@ int main(){
 
 				break;
 
+            /*Buscar número*/
             case '5':
 
                 printf("  Digite um n%cmero: ",163);
@@ -143,21 +147,25 @@ int main(){
                 }
                 break;
 
+            /*Quantidade de nós*/
             case '6':
 				system("cls");
                 printf("\n  Quantidade de n%cs: %d\n",162,contarNos(&t));
                 break;
 
+            /*Quantidade de folhas*/
             case '7':
         		system("cls");
                 printf("\n  Quantidade de folhas: %d\n", contarFolhas(&t));
                 break;
 
+            /*Altura*/
             case '8':
 				system("cls");
                 printf("\n  Altura: %d\n", altura(t));
                 break;
 
+            /*Apaga Árvore*/
 			case '9':
 				system("cls");
                 apagaArvore(t);
