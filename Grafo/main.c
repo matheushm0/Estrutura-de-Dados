@@ -4,7 +4,7 @@
 
 int main(){
     char op, op2, op3;
-    int num;
+    int num, vi, vf, p;
     GRAFO *gr;
 
     while(1){
@@ -23,17 +23,37 @@ int main(){
         {
             case '1':
             	system("cls");
-            	printf("\n  Grafo criado com sucesso!\n",181);
-            	gr = criaGrafo(5);
+            	printf("\n  Digite o tamanho do grafo: ");
+
+            	scanf("%i", &num);
+            	gr = criaGrafo(num);
+            	fflush(stdin);
+
+            	printf("\n  Grafo criado com sucesso!\n");
             	break;
 
             case '2':
-                criaAresta(gr,0,1,2);
+
+                printf("\n  Digite o v%crtice inicial: ", 130);
+                scanf("%i",&vi);
+                fflush(stdin);
+
+                printf("\n  Digite o v%crtice final: ", 130);
+                scanf("%i",&vf);
+                fflush(stdin);
+
+                printf("\n  Digite o peso: ");
+                scanf("%i",&p);
+                fflush(stdin);
+
+                criaAresta(gr, vi, vf, p);
+
+                /*criaAresta(gr,0,1,2);
                 criaAresta(gr,1,2,4);
                 criaAresta(gr,2,0,12);
                 criaAresta(gr,2,4,40);
                 criaAresta(gr,3,1,3);
-                criaAresta(gr,4,3,8);
+                criaAresta(gr,4,3,8);*/
                 break;
 
             case '3':
