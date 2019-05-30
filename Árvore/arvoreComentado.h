@@ -1,44 +1,44 @@
-/* ¡rvore Bin·ria - Binary Tree
+/* √Årvore Bin√°ria - Binary Tree
  *
- * S„o estruturas de dados caracterizadas por:
- * ou, n„o tem elemento algum (·rvore vazia).
+ * S√£o estruturas de dados caracterizadas por:
+ * ou, n√£o tem elemento algum (√°rvore vazia).
  *
  * ou tem um elemento distinto, denominado raiz,
  * com dois apontamentos para duas estruturas diferentes,
- * denominadas sub-·rove esquerda e sub-·rvore direita.
+ * denominadas sub-√°rove esquerda e sub-√°rvore direita.
  *
- * existe uma regra para adicionar valores na ·rvore,
- * se o valor novo for menor do que j· existe na ·rvore È
- * criado um apontamento a esquerda caso contr·rio È criado
+ * existe uma regra para adicionar valores na √°rvore,
+ * se o valor novo for menor do que j√° existe na √°rvore √©
+ * criado um apontamento a esquerda caso contr√°rio √© criado
  * a direita.
  */
 
 struct st_arvore{
     int valor;
-    struct st_arvore *direita; //sub-·rvore direita
-    struct st_arvore *esquerda; //sub-·rvore esquerda
+    struct st_arvore *direita; //sub-√°rvore direita
+    struct st_arvore *esquerda; //sub-√°rvore esquerda
 };
 
 typedef struct st_arvore arvore;
 
-/*Na criaÁ„o da ·rvore retorna um ponteiro nulo*/
+/*Na cria√ß√£o da √°rvore retorna um ponteiro nulo*/
 
 arvore* criaArvore(){
     return NULL;
 }
 
-/*Verifica se a ·rvore est· vazia retornando nulo*/
+/*Verifica se a √°rvore est√° vazia retornando nulo*/
 int arvoreEstaVazia(arvore* t){
     return t == NULL;
 }
 
 void insereDadoArvore(arvore** t, int num){
-    if(*t == NULL){// sendo nula ela n„o existe ainda
+    if(*t == NULL){// sendo nula ela n√£o existe ainda
         *t = (arvore*)malloc(sizeof(arvore));
         (*t)->esquerda = NULL;// acessa o valor e aponta esquerda pra NULL
         (*t)->direita = NULL;
-        (*t)->valor = num;// ·rvore recebe um valor
-    }else{// se a ·rvore j· tiver valores, seus galhos estar„o vazios e adicionaremos os valores nos galhos
+        (*t)->valor = num;// √°rvore recebe um valor
+    }else{// se a √°rvore j√° tiver valores, seus galhos estar√£o vazios e adicionaremos os valores nos galhos
         if(num < (*t)->valor){
             insereDadoArvore(&(*t)->esquerda, num);
         }
@@ -48,33 +48,33 @@ void insereDadoArvore(arvore** t, int num){
     }
 }
 
-int estaNaArvore(arvore* t, int num){ // busca em ·rvore bin·ria
+int estaNaArvore(arvore* t, int num){ // busca em √°rvore bin√°ria
     if(arvoreEstaVazia(t)){
         return 0;
     }
     return t->valor==num || estaNaArvore(t->esquerda, num) || estaNaArvore(t->direita, num);
-    //esse return verifica pros dois ramos da ·rvore se existe o valor.
+    //esse return verifica pros dois ramos da √°rvore se existe o valor.
 }
 
-/*--- O em ordem, busca o ˙ltimo ‡ esquerda, depois volta atÈ o nÛ onde ele ter·
-que ir ‡ direita. ApÛs isso ele busca o ˙ltimo ‡ esquerda e volta....---*/
-void exibirEmOrdem(arvore *pRaiz){//recebe o nÛ raiz, de novo aquela confus„o com o nome da vari·vel
-	if(pRaiz != NULL){//verifica se o nÛ atual existe, pois ao ser chamado pRaiz->direita ou pRaiz->esquerda, sabemos que poder„o ser nulos
-            exibirEmOrdem(pRaiz->esquerda);//chamada recursiva para o prÛximo ‡ esquerda, e ser· chamado atÈ o ˙ltimo ‡ esquerda.
-            printf("\n%i", pRaiz->valor);//Ao chegar no ˙ltimo ‡ esquerda, ou seja, for pRaiz->esquerda for NULL, ele comeÁa a printar, e vai printando todos os nÛs por onde ele passou, "voltando"
-            exibirEmOrdem(pRaiz->direita);//È chamado o nÛ a direita, seguindo o fluxo
+/*--- O em ordem, busca o √∫ltimo √† esquerda, depois volta at√© o n√≥ onde ele ter√°
+que ir √† direita. Ap√≥s isso ele busca o √∫ltimo √† esquerda e volta....---*/
+void exibirEmOrdem(arvore *pRaiz){//recebe o n√≥ raiz, de novo aquela confus√£o com o nome da vari√°vel
+	if(pRaiz != NULL){//verifica se o n√≥ atual existe, pois ao ser chamado pRaiz->direita ou pRaiz->esquerda, sabemos que poder√£o ser nulos
+            exibirEmOrdem(pRaiz->esquerda);//chamada recursiva para o pr√≥ximo √† esquerda, e ser√° chamado at√© o √∫ltimo √† esquerda.
+            printf("\n%i", pRaiz->valor);//Ao chegar no √∫ltimo √† esquerda, ou seja, for pRaiz->esquerda for NULL, ele come√ßa a printar, e vai printando todos os n√≥s por onde ele passou, "voltando"
+            exibirEmOrdem(pRaiz->direita);//√© chamado o n√≥ a direita, seguindo o fluxo
 	}
 }
 
-void exibirPreOrdem(arvore *pRaiz){//PrÈ-Ordem È mais simples, no nÛ que ele t·, ele j· printa. ComeÁa pela raiz e vai printando atÈ o ˙ltimo a esquerda, depois volta pro nÛ onde ele ter· que ir atÈ a esquerda e volta denovo a buscar o ˙ltimo a esquerda e segue o fluxo.
+void exibirPreOrdem(arvore *pRaiz){//Pr√©-Ordem √© mais simples, no n√≥ que ele t√°, ele j√° printa. Come√ßa pela raiz e vai printando at√© o √∫ltimo a esquerda, depois volta pro n√≥ onde ele ter√° que ir at√© a esquerda e volta denovo a buscar o √∫ltimo a esquerda e segue o fluxo.
     if(pRaiz != NULL){//mesmo teste anterior
-        printf("\n%i", pRaiz->valor);//assim que est· no nÛ, j· faz o print
-        exibirPreOrdem(pRaiz->esquerda);//faz a chamada recursiva pro nÛ a esquerda, perceba que o pRaiz->direita sÛ È chamado quando passa por todos os nÛs a esquerda
-        exibirPreOrdem(pRaiz->direita);//chamada recursiva para nÛ ‡ direita
+        printf("\n%i", pRaiz->valor);//assim que est√° no n√≥, j√° faz o print
+        exibirPreOrdem(pRaiz->esquerda);//faz a chamada recursiva pro n√≥ a esquerda, perceba que o pRaiz->direita s√≥ √© chamado quando passa por todos os n√≥s a esquerda
+        exibirPreOrdem(pRaiz->direita);//chamada recursiva para n√≥ √† direita
     }
 }
 
-void exibirPosOrdem(arvore *pRaiz){//PÛs-ordem È o que eu acho mais complicado, mas n„o impossÌvel de entender. A ideia basicamente È passar por toda a ·rvore, e sÛ depois vir fazendo os prints. Ele busca o ˙ltimo a esquerda, depois volta pro nÛ que tiver que voltar e vai pra direita, sem printar nada, e busca de novo o ˙ltimo a esquerda, ate varrer toda a ·rvore, depois ele vai printando tudo.
+void exibirPosOrdem(arvore *pRaiz){//P√≥s-ordem √© o que eu acho mais complicado, mas n√£o imposs√≠vel de entender. A ideia basicamente √© passar por toda a √°rvore, e s√≥ depois vir fazendo os prints. Ele busca o √∫ltimo a esquerda, depois volta pro n√≥ que tiver que voltar e vai pra direita, sem printar nada, e busca de novo o √∫ltimo a esquerda, ate varrer toda a √°rvore, depois ele vai printando tudo.
     if(pRaiz != NULL){
         exibirPosOrdem(pRaiz->esquerda);
         exibirPosOrdem(pRaiz->direita);
@@ -119,39 +119,41 @@ char sub_menuDelete (){
 
 }
 
-arvore* MaiorDireita(arvore** no) //Essas duas funÁıes, *MaiorDireita e *MenorEsquerda s„o duas funÁıes auxiliares. V„o ser usadas na hora de remover um NÛ que tenha filhos a direita e a esquerda
+arvore* MaiorDireita(arvore** no) //Essas duas fun√ß√µes, *MaiorDireita e *MenorEsquerda s√£o duas fun√ß√µes auxiliares. V√£o ser usadas na hora de remover um N√≥ que tenha filhos a direita e a esquerda
 {
-//essa funÁ„o vai ser usada pra, como o prÛprio nome j· diz, buscar o Maior nÛ a direita
-//Recebe um arvore** no que ser· o nÛ a ser removido, a partir dai ele busca o maior ‡ direita
-    if((*no)->direita != NULL)//caso seja diferente de null, ou seja, existe algum nÛ ‡ direita, ele chama recursivamente o prÛximo nÛ ‡ direita
+//essa fun√ß√£o vai ser usada pra, como o pr√≥prio nome j√° diz, buscar o Maior n√≥ a direita
+//Recebe um arvore** no que ser√° o n√≥ a ser removido, a partir dai ele busca o maior √† direita
+    if((*no)->direita != NULL)//caso seja diferente de null, ou seja, existe algum n√≥ √† direita, ele chama recursivamente o pr√≥ximo n√≥ √† direita
         return MaiorDireita(&(*no)->direita);
-    else //caso contr·rio, esse È o maior nÛ a direita.
+    else //caso contr√°rio, esse √© o maior n√≥ a direita.
     {
-        arvore *aux = *no;//faz um backup do nÛ, pois ele ir· excluir esse nÛ, e ir· adicion·-lo em outro lugar
-        if((*no)->esquerda != NULL) // se nao houver essa verificacao, esse nÛ vai perder todos os seus filhos da esquerda!
+        arvore *aux = *no;//faz um backup do n√≥, pois ele ir√° excluir esse n√≥, e ir√° adicion√°-lo em outro lugar
+        if((*no)->esquerda != NULL) // se nao houver essa verificacao, esse n√≥ vai perder todos os seus filhos da esquerda!
             *no = (*no)->esquerda;
         else
             *no = NULL;
-        return aux;
+ 	printf("\n  N%cmero %i excluido\n", 163, *aux);
+    	return aux;
     }
 }
 
-arvore* MenorEsquerda(arvore** no) //Essa funÁ„o tem a mesma caracterÌstica da anterior. Dependendo da sua abordagem, vocÍ pode usar uma ou outra. Se a sua abordagem È de pegar o Menor ‡ esquerda, use essa funÁ„o, caso contr·rio, utilize a anterior.
+arvore* MenorEsquerda(arvore** no) //Essa fun√ß√£o tem a mesma caracter√≠stica da anterior. Dependendo da sua abordagem, voc√™ pode usar uma ou outra. Se a sua abordagem √© de pegar o Menor √† esquerda, use essa fun√ß√£o, caso contr√°rio, utilize a anterior.
 {
     if((*no)->esquerda != NULL)
         return MenorEsquerda(&(*no)->esquerda);
     else
     {
         arvore *aux = *no;
-        if((*no)->direita != NULL) // se nao houver essa verificacao, esse nÛ vai perder todos os seus filhos da direita!
+        if((*no)->direita != NULL) // se nao houver essa verificacao, esse n√≥ vai perder todos os seus filhos da direita!
             *no = (*no)->direita;
         else
             *no = NULL;
-        return aux;
+        printf("\n  N%cmero %i excluido\n", 163, *aux);
+    	return aux;
     }
 }
 
-void remover(arvore** t, int valor){ //Mais uma vez aquela confus„o do **pRaiz, mas j· est· ciente do problema. A funÁ„o recebe o nÛ raiz, e um n˙mero a ser removido. Ir· fazer uma busca de onde est· esse n˙mero e depois executa a lÛgica de remoÁ„o.
+void remover(arvore** t, int valor){ //Mais uma vez aquela confus√£o do **pRaiz, mas j√° est√° ciente do problema. A fun√ß√£o recebe o n√≥ raiz, e um n√∫mero a ser removido. Ir√° fazer uma busca de onde est√° esse n√∫mero e depois executa a l√≥gica de remo√ß√£o.
 
     if(*t == NULL)    // esta verificacao serve para caso o numero nao exista na arvore.
     {
@@ -160,31 +162,31 @@ void remover(arvore** t, int valor){ //Mais uma vez aquela confus„o do **pRaiz, 
         return;
     }
 
-    if(valor < (*t)->valor)//verifica se o n˙mero È menor que o n˙mero do NÛ atual, na busca.
+    if(valor < (*t)->valor)//verifica se o n√∫mero √© menor que o n√∫mero do N√≥ atual, na busca.
         remover(&(*t)->esquerda, valor);//chamada recursiva para caso seja menor
-    else//caso contr·rio, ele ser· o n˙mero ou ser· maior
-        if(valor > (*t)->valor)//verifica se o n˙mero È maior que o n˙mero do NÛ atual, na busca.
+    else//caso contr√°rio, ele ser√° o n√∫mero ou ser√° maior
+        if(valor > (*t)->valor)//verifica se o n√∫mero √© maior que o n√∫mero do N√≥ atual, na busca.
             remover(&(*t)->direita, valor);//chamada recursiva para caso seja maior
         else     // se nao eh menor nem maior, logo, eh o numero que estou procurando! :)
         {
-            arvore *aux = *t;     // faz um backup do NÛ a ser removido
-            if (((*t)->esquerda == NULL) && ((*t)->direita == NULL)) // verifica se n„o tem filho nem a direita, nem a esquerda, ou seja, n„o tem filhos.
+            arvore *aux = *t;     // faz um backup do N√≥ a ser removido
+            if (((*t)->esquerda == NULL) && ((*t)->direita == NULL)) // verifica se n√£o tem filho nem a direita, nem a esquerda, ou seja, n√£o tem filhos.
             {
-                free(aux);//Nesse Caso, È bem simples, È sÛ desalocar, liberar esse nÛ da memÛria
+                free(aux);//Nesse Caso, √© bem simples, √© s√≥ desalocar, liberar esse n√≥ da mem√≥ria
                 (*t) = NULL;
             }
             else      // so tem o filho da direita
             {
-                if ((*t)->esquerda == NULL) //Verifica se n„o tem filho a esquerda, caracterizando como tendo filhos somente a direita.
+                if ((*t)->esquerda == NULL) //Verifica se n√£o tem filho a esquerda, caracterizando como tendo filhos somente a direita.
                 {
-                    (*t) = (*t)->direita;//o NÛ atual, recebe o seu filho a direta, fazendo com que ele desapareÁa e o seu prÛximo filho substitua o seu lugar
-                    aux->direita = NULL;//o backup se faz necess·rio para isso, para vocÍ cortar essa ligaÁ„o, caso contr·rio, teria um nÛ em memÛria que teriam os antigos filhos
+                    (*t) = (*t)->direita;//o N√≥ atual, recebe o seu filho a direta, fazendo com que ele desapare√ßa e o seu pr√≥ximo filho substitua o seu lugar
+                    aux->direita = NULL;//o backup se faz necess√°rio para isso, para voc√™ cortar essa liga√ß√£o, caso contr√°rio, teria um n√≥ em mem√≥ria que teriam os antigos filhos
                     free(aux);
-                    aux = NULL;// e tambÈm para poder liber·-lo da memÛria depois
+                    aux = NULL;// e tamb√©m para poder liber√°-lo da mem√≥ria depois
                 }
                 else             //so tem filho da esquerda
                 {
-                    if ((*t)->direita == NULL) //MESMO CASO ANTERIOR, sÛ que nesse caso, sÛ existem filhos a esquerda.
+                    if ((*t)->direita == NULL) //MESMO CASO ANTERIOR, s√≥ que nesse caso, s√≥ existem filhos a esquerda.
                     {
                         (*t) = (*t)->esquerda;
                         aux->esquerda = NULL;
@@ -193,13 +195,13 @@ void remover(arvore** t, int valor){ //Mais uma vez aquela confus„o do **pRaiz, 
                     }
                     else //Quando existe filhos a direita e a esquerda. Escolhi fazer o maior filho direito da subarvore esquerda.
                     {
-                        aux = MaiorDireita(&(*t)->esquerda); //Faz um backup do Maior a direita, pois ele usar· o maior a direita no local do NÛ a ser removido. Se vc quiser usar o Menor da esquerda, so o que mudaria seria isso: aux = MenorEsquerda(&(*t)->direita);
-                        aux->esquerda = (*t)->esquerda;          //o NÛ(Maior a Direita) ir· receber os filhos a esquerda do NÛ que ser· removido
-                        aux->direita = (*t)->direita;//o NÛ(Maior a Direita) ir· receber os filhos a direita do NÛ que ser· removido
-                        (*t)->esquerda = (*t)->direita = NULL;//O NÛ que ser· removido, perde seus filhos, ou seja, recebe NULL
+                        aux = MaiorDireita(&(*t)->esquerda); //Faz um backup do Maior a direita, pois ele usar√° o maior a direita no local do N√≥ a ser removido. Se vc quiser usar o Menor da esquerda, so o que mudaria seria isso: aux = MenorEsquerda(&(*t)->direita);
+                        aux->esquerda = (*t)->esquerda;          //o N√≥(Maior a Direita) ir√° receber os filhos a esquerda do N√≥ que ser√° removido
+                        aux->direita = (*t)->direita;//o N√≥(Maior a Direita) ir√° receber os filhos a direita do N√≥ que ser√° removido
+                        (*t)->esquerda = (*t)->direita = NULL;//O N√≥ que ser√° removido, perde seus filhos, ou seja, recebe NULL
                         free((*t));
                         *t = aux;
-                        aux = NULL;   //Enfim, libera-se da memÛria o nÛ a ser removido
+                        aux = NULL;   //Enfim, libera-se da mem√≥ria o n√≥ a ser removido
                     }
                 }
             }
@@ -213,7 +215,7 @@ int contarNos(arvore **t){
         return 1 + contarNos(&(*t)->esquerda) + contarNos(&(*t)->direita);
 }
 
-/* Folha È um nÛ que n„o tem filho algum */
+/* Folha √© um n√≥ que n√£o tem filho algum */
 int contarFolhas(arvore **t){
     if((*t) == NULL)
         return 0;
@@ -232,7 +234,7 @@ int altura(arvore* t)
         int eAltura = altura(t->esquerda);
         int dAltura = altura(t->direita);
 
-        /* Usa a altura maior pra dizer o tamanho da ·rvore */
+        /* Usa a altura maior pra dizer o tamanho da √°rvore */
         if (eAltura > dAltura)
             return(eAltura + 1);
         else return(dAltura + 1);
@@ -247,7 +249,7 @@ void apagaArvore (struct st_arvore *t){
     apagaArvore(t->esquerda);
     apagaArvore(t->direita);
 
-    /* depois deleta o nÛ */
+    /* depois deleta o n√≥ */
     printf("\n Excluindo o n%c: %d", 162, t->valor);
     free(t);
 }
