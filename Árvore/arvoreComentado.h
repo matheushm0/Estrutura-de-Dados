@@ -74,7 +74,7 @@ void exibirPreOrdem(arvore *pRaiz){//Pré-Ordem é mais simples, no nó que ele 
     }
 }
 
-void exibirPosOrdem(arvore *pRaiz){//Pós-ordem é o que eu acho mais complicado, mas não impossível de entender. A ideia basicamente é passar por toda a árvore, e só depois vir fazendo os prints. Ele busca o último a esquerda, depois volta pro nó que tiver que voltar e vai pra direita, sem printar nada, e busca de novo o último a esquerda, ate varrer toda a árvore, depois ele vai printando tudo.
+void exibirPosOrdem(arvore *pRaiz){//Pós-ordem é o que eu acho mais complicado, mas não impossível de entender. A ideia basicamente é passar por toda a árvore, e só depois vir fazendo os prints. Ele busca o último a esquerda, depois volta pro nó que tiver que voltar e vai pra direita, sem printar nada, e busca de novo o último a esquerda, ate varrer toda a árvore, depois ele vai printando tudo
     if(pRaiz != NULL){
         exibirPosOrdem(pRaiz->esquerda);
         exibirPosOrdem(pRaiz->direita);
