@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include "grafo.h"
+#include "novoGrafo.h"
 
 int main(){
     char op, op2, op3;
     int num, vi, vf, p, i, d;
-    GRAFO *gr;
+    Grafo *gr;
     int *r;
+    int vis[10];
 
     while(1){
         printf("\n********************************\n");
@@ -37,6 +38,7 @@ int main(){
 
             case '2':
 
+
                 printf("\n  Digite o v%crtice inicial: ", 130);
                 scanf("%i",&vi);
                 fflush(stdin);
@@ -45,11 +47,11 @@ int main(){
                 scanf("%i",&vf);
                 fflush(stdin);
 
-                printf("\n  Digite o peso: ");
+                /*printf("\n  Digite o peso: ");
                 scanf("%i",&p);
-                fflush(stdin);
+                fflush(stdin);*/
 
-                criaAresta(gr, vi, vf, p);
+                addAresta(gr, vi, vf);
 
                 /*criaAresta(gr, 0, 1, 10);
                 criaAresta(gr, 0, 2, 5);
@@ -64,6 +66,7 @@ int main(){
                 break;
 
             case '3':
+
                 imprime(gr);
 				break;
 
@@ -74,7 +77,7 @@ int main(){
             case '5':
 
                 /*DIJKSTRA*/
-                printf("\n  Digite o n%c inicial: ", 224);
+                /*printf("\n  Digite o n%c inicial: ", 224);
                 scanf("%i",&d);
                 fflush(stdin);
 
@@ -82,7 +85,7 @@ int main(){
 
                 for(i = 0; i < gr->vertices; i++){
                     printf("  D(v%d -> v%d) = %d\n", d, i, r[i]);
-                }
+                }*/
 
                 break;
 

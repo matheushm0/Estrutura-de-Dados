@@ -1,28 +1,25 @@
 #define true 1
 #define false 0
 
-#define BRANCO 0
-#define AMARELO 1
-#define VERMELHO 2
-
 typedef int bool;
 typedef int TIPOPESO;
 
 /* FUNÇÕES PARA CRIAR O GRAFO*/
+
 typedef struct adjacencia{
     int vertice;  //Vetice Final
     TIPOPESO peso; //Peso ou Caminho
-    struct adjacencia *prox;  //Proximo item
+    struct adjacencia* prox;  //Proximo item
 } ADJACENCIA;
 
 typedef struct vertice{
-ADJACENCIA *cab;  //Cabeça da lista ligada 1 -> "Num"
+    ADJACENCIA *cab;  //Cabeça da lista ligada 1 -> "Num"
 }VERTICE;
 
 typedef struct grafo {
    int vertices; //São os pontinhos
    int arestas;    //São as arestas ou "caminhos" do grafo
-   VERTICE *adj; //Ponteiro para um vetor de listas "Arrajo de vertices"
+   VERTICE *adj;//Ponteiro para um vetor de listas "Arrajo de vertices"
 }GRAFO;
 
 
@@ -73,6 +70,24 @@ void imprime(GRAFO *gr){
 }
 
 /*FUNÇÕES PARA BUSCA EM PROFUNDIDADE (DFS)*/
+
+void DFS(int i)
+{
+    node *p;
+
+	printf("\n%d",i);
+    p=G[i];
+    visited[i]=1;
+    while(p!=NULL)
+    {
+       i=p->vertex;
+
+	   if(!visited[i])
+            DFS(i);
+        p=p->next;
+    }
+}
+
 
 /*FUNÇÕES PARA BUSCA EM LARGURA (BFS)*/
 
