@@ -236,7 +236,7 @@ typedef struct grafo {
 }GRAFO;
 
 
-GRAFO *criaGrafo(int v){
+GRAFO *criaGrafoP(int v){
     GRAFO *g = (GRAFO *) malloc(sizeof(GRAFO));
     g->vertices = v;
     g->arestas = 0;
@@ -247,7 +247,7 @@ GRAFO *criaGrafo(int v){
     return(g);
 }
 
-ADJACENCIA *criaAdj(int v, int peso){
+ADJACENCIA *criaAdjP(int v, int peso){
     ADJACENCIA *temp = (ADJACENCIA *)malloc(sizeof(ADJACENCIA));
     temp->vertice = v;
     temp->peso = peso;
@@ -255,20 +255,20 @@ ADJACENCIA *criaAdj(int v, int peso){
     return(temp);
 }
 
-bool criaAresta(GRAFO *gr,int vi,int vf, TIPOPESO p){
+bool criaArestaP(GRAFO *gr,int vi,int vf, TIPOPESO p){
     if(!gr) return(false);
     if((vf<0)||(vf>= gr->vertices))
         return(false);
     if((vi<0)||(vi>=gr->vertices))
         return(false);
-    ADJACENCIA *novo = criaAdj(vf,p);
+    ADJACENCIA *novo = criaAdjP(vf,p);
     novo->prox = gr->adj[vi].cab;
     gr->adj[vi].cab = novo;
     gr->arestas++;
     return(true);
 }
 
-void imprime(GRAFO *gr){
+void imprimeP(GRAFO *gr){
     printf("  Vertices: %d. Arestas: %d.\n", gr->vertices, gr->arestas);
     int i;
     for(i=0; i<gr->vertices; i++){
