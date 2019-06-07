@@ -4,8 +4,9 @@
 
 int main(){
     char op, op2, op3;
-    int num, vi, vf, i, d;
+    int num, vi, vf, i, d, p;
     Grafo *gr;
+    GRAFO *grp;
 
     while(1){
         printf("\n********************************\n");
@@ -75,6 +76,12 @@ int main(){
                 break;
 
             case '6':
+
+                excluiGrafo(gr);
+                printf("\n  Grafo excluido com sucesso!");
+
+                /*Deseja recriar o grafo 1 pra sim e 2 pra sair do programa*/
+
                 break;
 
             case '7':

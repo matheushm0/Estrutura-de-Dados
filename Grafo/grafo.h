@@ -69,28 +69,6 @@ void imprime(GRAFO *gr){
     }
 }
 
-/*FUNÇÕES PARA BUSCA EM PROFUNDIDADE (DFS)*/
-
-void DFS(int i)
-{
-    node *p;
-
-	printf("\n%d",i);
-    p=G[i];
-    visited[i]=1;
-    while(p!=NULL)
-    {
-       i=p->vertex;
-
-	   if(!visited[i])
-            DFS(i);
-        p=p->next;
-    }
-}
-
-
-/*FUNÇÕES PARA BUSCA EM LARGURA (BFS)*/
-
 /*ALGORITMO DE DIJKSTRA*/
 
 //O algoritmo de Dijkstra soluciona o problema
@@ -162,10 +140,6 @@ int menorDist(GRAFO *g, int *aberto, int *d){
             menor = i;
         return(menor);
 }
-
-/*FUNÇÕES PARA EXCLUIR*/
-
-/*https://www.includehelp.com/ds/addition-and-deletion-of-nodes-and-edges-in-a-graph-using-adjacency-matrix.aspx*/
 
 char menu_principal()
 {
