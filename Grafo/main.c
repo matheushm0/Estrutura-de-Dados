@@ -4,103 +4,251 @@
 #include "novoGrafo.h"
 
 int main(){
-    char op, op2, op3;
-    int num, vi, vf, i, d, p;
+    char op, op1, op2, op3, op4, op5;
+    int num, vi, vf, i, d, p, excluido, ndfs, nbfs, nd;
+    int *r;
     Grafo *gr;
-    GRAFO *grp;
+    GRAFOP *grp;
 
-    while(1){
+    while(1)
+    {
+        //PRIMEIRO MENU CRIAR COM PESO E SEM PESO
         printf("\n********************************\n");
         printf("*             GRAFO            *\n");
         printf("********************************\n");
 
-    	op = menu_principal();
-    	printf("\n\n");
+        op = menu_principal();
+        printf("\n\n");
 
-        if(op == '0') {
+        if(op == '0')
+        {
             break;
         }
 
         switch(op)
         {
-            case '1':
-            	/*system("cls");
-            	printf("\n  Digite o tamanho do grafo: ");
 
-            	scanf("%i", &num);
-            	gr = criaGrafo(num);
-            	fflush(stdin);
+        case '1':
 
-            	printf("\n  Grafo criado com sucesso!\n");*/
+            while(1)   //GRAFO SEM PESO
+            {
+                printf("\n********************************\n");
+                printf("*     GRAFO SEM PESO            *\n");
+                printf("********************************\n");
 
-            	gr = criaGrafo(6);
+                op1 = sub_menuSP();
+                printf("\n\n");
 
-            	break;
+                if(op1 == '0')
+                {
+                    break;
+                }
 
-            case '2':
+                switch(op1)
+                {
 
-                /*printf("\n  Digite o v%crtice inicial: ", 130);
-                scanf("%i",&vi);
-                fflush(stdin);
+                case '1':
+                    system("cls");
+                    printf("\n  Digite o tamanho do grafo: ");
 
-                printf("\n  Digite o v%crtice final: ", 130);
-                scanf("%i",&vf);
-                fflush(stdin);
+                    scanf("%i", &num);
+                    gr = criaGrafo(num);
+                    fflush(stdin);
 
-                addAresta(gr, vi, vf);*/
-                addAresta(gr, 0, 1);
-                addAresta(gr, 0, 2);
-                addAresta(gr, 1, 2);
-                addAresta(gr, 1, 4);
-                addAresta(gr, 1, 3);
-                addAresta(gr, 2, 4);
-                addAresta(gr, 3, 4);
+                    printf("\n  Grafo criado com sucesso!\n");
 
-                break;
+                    //gr = criaGrafo(6);
 
-            case '3':
+                    break;
 
-                imprime(gr);
+                case '2':
+                    system("cls");
+                    printf("\n  Digite o v%crtice inicial: ", 130);
+                    scanf("%i",&vi);
+                    fflush(stdin);
 
-				break;
+                    printf("\n  Digite o v%crtice final: ", 130);
+                    scanf("%i",&vf);
+                    fflush(stdin);
 
-            case '4':
+                    addAresta(gr, vi, vf);
+                    /*addAresta(gr, 0, 1);
+                    addAresta(gr, 0, 2);
+                    addAresta(gr, 1, 2);
+                    addAresta(gr, 1, 4);
+                    addAresta(gr, 1, 3);
+                    addAresta(gr, 2, 4);
+                    addA
+                    printf("\n  Digite o v%crtice para buscar: ", 130);
+                    scanf("%i",&nbfs);
+                    fflush(stdin);resta(gr, 3, 4);*/
 
-                DFS(gr, 0);
+                    break;
 
-				break;
+                case '3':
+                    system("cls");
 
-            case '5':
+                    imprime(gr);
 
-                BFS(gr, 0);
+                    break;
 
-                break;
+                case '4':
+                    system("cls");
 
-            case '6':
+                    printf("\n  Digite o v%crtice para buscar: ", 130);
+                    scanf("%i",&ndfs);
+                    fflush(stdin);
 
-                excluiGrafo(gr);
-                printf("\n  Grafo excluido com sucesso!");
 
-                /*Deseja recriar o grafo 1 pra sim e 2 pra sair do programa*/
+                    DFS(gr, ndfs);
 
-                break;
+                    break;
 
-            case '7':
-                break;
+                case '5':
+                    system("cls");
 
-            case '8':
-                break;
+                    printf("\n  Digite o v%crtice para buscar: ", 130);
+                    scanf("%i",&nbfs);
+                    fflush(stdin);
 
-			case '9':
-                break;
+                    BFS(gr, nbfs);
 
-            default:
-                system("cls");
-                printf("\n  Opcao Invalida\n");
+                    break;
+
+                case '6':
+
+                    system("cls");
+                    excluiGrafo(gr);
+
+                    while(1)
+                    {
+
+                        op4 = sub_menuExcluir();
+                        printf("\n\n");
+
+                        if(op4 == '0')
+                        {
+                            system("cls");
+                            break;
+                        }
+
+                        switch(op4)
+                        {
+
+                        case '1':
+                            system("cls");
+
+                            printf("\n  Digite o tamanho do grafo: ");
+
+                            scanf("%i", &num);
+                            gr = criaGrafo(num);
+                            fflush(stdin);
+
+                            printf("\n  Grafo criado com sucesso!\n");
+
+                            break;
+                        default:
+                            system("cls");
+                            printf("\n  Opcao Invalida\n");
+                        }
+
+                    }
+                    break;
+
+                default:
+                    system("cls");
+                    printf("\n  Opcao Invalida\n");
+                }
+            }
+            break;
+
+        case '2':
+            while(1)  //SEGUNDO MENU DE CRIAR GRAFO
+            {
+                printf("\n********************************\n");
+                printf("*     GRAFO COM PESO            *\n");
+                printf("********************************\n");
+
+                op3 = sub_menuCP();
+                printf("\n\n");
+
+                if(op3 == '0')
+                {
+                    break;
+                }
+
+                switch(op3)
+                {
+                case '1':
+
+                    system("cls");
+                    printf("\n  Digite o tamanho do grafo: ");
+
+                    scanf("%i", &num);
+                    grp = criaGrafoP(num);
+                    fflush(stdin);
+
+                    printf("\n  Grafo criado com sucesso!\n");
+
+                    //grp = criaGrafoP(6);
+
+                    break;
+
+                case '2':
+                    system("cls");
+                    printf("\n  Digite o v%crtice inicial: ", 130);
+                    scanf("%i",&vi);
+                    fflush(stdin);
+
+                    printf("\n  Digite o v%crtice final: ", 130);
+                    scanf("%i",&vf);
+                    fflush(stdin);
+
+                    printf("\n  Digite o peso: ");
+                    scanf("%i",&p);
+                    fflush(stdin);
+
+                    criaArestaP(grp, vi, vf, p);
+
+                    break;
+
+                case '3':
+                    system("cls");
+                    imprimeP(grp);
+
+                    break;
+
+                case '4':
+                    system("cls");
+                    /*Dijkstra*/
+
+                    printf("\n  Digite o v%crtice para buscar: ", 130);
+                    scanf("%i",&nd);
+                    fflush(stdin);
+
+                    r = dijkstra(grp, nd);
+
+                    for(i = 0; i<grp->vertices; i++){
+                        printf("  D(v%d -> v%d) = %d\n", nd, i, r[i]);
+                    }
+
+                    break;
+
+                default:
+                    system("cls");
+                    printf("\n  Opcao Invalida\n");
+
+                }
+            }
+            break;
+        default:
+            system("cls");
+            printf("\n  Opcao Invalida\n");
         }
     }
-
+    free(r);
     free(gr);
+    free(grp);
 
     return 0;
 }
