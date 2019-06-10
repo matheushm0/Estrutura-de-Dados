@@ -5,7 +5,7 @@
 typedef int bool;
 typedef int TIPOPESO;
 
-/* FUN«’ES PARA GRAFO SEM PESO */
+/* FUN√á√ïES PARA GRAFO SEM PESO */
 struct no{
     int vertice;
     struct no* prox;
@@ -21,7 +21,7 @@ struct Grafo{
 
 typedef struct Grafo Grafo;
 
-/*FUN«√O PARA CRIAR OS N”S*/
+/*FUN√á√ÉO PARA CRIAR OS N√ìS*/
 
 struct no* criaNo(int v){
     struct no* novoNo = malloc(sizeof(struct no));
@@ -30,7 +30,7 @@ struct no* criaNo(int v){
     return novoNo;
 }
 
-/*FUN«√O PARA CRIAR O GRAFO*/
+/*FUN√á√ÉO PARA CRIAR O GRAFO*/
 
 struct Grafo* criaGrafo(int v){
    struct Grafo* g = malloc(sizeof(struct Grafo));
@@ -48,7 +48,7 @@ struct Grafo* criaGrafo(int v){
     return g;
 }
 
-/*FUN«√O PARA ADICIONAR ARESTAS*/
+/*FUN√á√ÉO PARA ADICIONAR ARESTAS*/
 
 void addAresta(struct Grafo* g, int vi, int vf){
 
@@ -63,7 +63,7 @@ void addAresta(struct Grafo* g, int vi, int vf){
     g->listaAdj[vf] = novoNo;
 }
 
-/*FUN«√O PARA IMPRIMIR O GRAFO*/
+/*FUN√á√ÉO PARA IMPRIMIR O GRAFO*/
 
 void imprime(struct Grafo* g){
 
@@ -189,13 +189,13 @@ void BFS(Grafo* g, int vInicial) {
     }
 }
 
-/*FUN«√O PARA EXCLUIR O GRAFO*/
+/*FUN√á√ÉO PARA EXCLUIR O GRAFO*/
 
 void excluiGrafo(Grafo *g){
     if(g){
         if(g->listaAdj){
             int v;
-            //liberar os nÛs
+            //liberar os n√≥s
             for(v=0; v < g->numVertices; v++){
                 struct no *primeiro = g->listaAdj[v];
                 while(primeiro){
@@ -214,7 +214,7 @@ void excluiGrafo(Grafo *g){
     }
 }
 
-/* FUN«’ES PARA CRIAR O GRAFO COM PESO */
+/* FUN√á√ïES PARA CRIAR O GRAFO COM PESO */
 
 typedef struct adjacencia{
     int verticep;  //Vetice Final
@@ -223,12 +223,12 @@ typedef struct adjacencia{
 } ADJACENCIA;
 
 typedef struct verticeP{
-    ADJACENCIA *cab;  //CabeÁa da lista ligada 1 -> "Num"
+    ADJACENCIA *cab;  //Cabe√ßa da lista ligada 1 -> "Num"
 }VERTICEP;
 
 typedef struct grafoP{
-   int vertices; //S„o os pontinhos
-   int arestas;    //S„o as arestas ou "caminhos" do grafo
+   int vertices; //S√£o os pontinhos
+   int arestas;    //S√£o as arestas ou "caminhos" do grafo
    VERTICEP *adj;//Ponteiro para um vetor de listas "Arrajo de vertices"
 }GRAFOP;
 
@@ -283,7 +283,7 @@ void imprimeP(GRAFOP *gr){
 
 //O algoritmo de Dijkstra soluciona o problema
 //do caminho mais curto num grafo dirigido
-//ou nao dirigido, com arestas de peso n„o negativo
+//ou nao dirigido, com arestas de peso n√£o negativo
 void inicializaD(GRAFOP *g, int *d, int *p, int s){
     int v;
     for(v=0; v<g->vertices;v++){
@@ -307,7 +307,7 @@ void relaxa(GRAFOP *g, int *d, int *p, int u, int v){
 
 //Varre o arranjo de abertos
 //Se encontrar um true retorna true
-//Ou seja que achou, se n„o retorna false
+//Ou seja que achou, se n√£o retorna false
 bool existeAberto(GRAFOP *g, int *aberto){
     int i;
     for(i=0;i<g->vertices;i++)
@@ -317,7 +317,7 @@ bool existeAberto(GRAFOP *g, int *aberto){
 }
 
 //Dentre todos os abertos necessita
-//achar o que possui menor dist‚ncia
+//achar o que possui menor dist√¢ncia
 int menorDist(GRAFOP *g, int *aberto, int *d){
     int i;
     for(i=0; i<g->vertices; i++)
