@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include "novoGrafo.h"
+#include "Grafo.h"
 
 int main(){
     char op, op1, op2, op3, op4, op5;
@@ -77,11 +77,7 @@ int main(){
                     addAresta(gr, 1, 2);
                     addAresta(gr, 1, 4);
                     addAresta(gr, 1, 3);
-                    addAresta(gr, 2, 4);
-                    addA
-                    printf("\n  Digite o v%crtice para buscar: ", 130);
-                    scanf("%i",&nbfs);
-                    fflush(stdin);resta(gr, 3, 4);*/
+                    addAresta(gr, 2, 4);*/
 
                     break;
 
